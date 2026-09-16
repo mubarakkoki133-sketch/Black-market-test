@@ -1,0 +1,1095 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MIAMI RP — Black Market Test</title>
+
+<style>
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+}
+
+:root{
+    --bg:#080b12;
+    --card:#101621;
+    --line:#263244;
+    --text:#f8fafc;
+    --muted:#94a3b8;
+    --blue:#3b82f6;
+    --blue2:#06b6d4;
+}
+
+body{
+    font-family:"Segoe UI",Tahoma,Arial,sans-serif;
+    background:
+        radial-gradient(circle at 10% 0%,#12305c 0,transparent 30%),
+        radial-gradient(circle at 90% 10%,#123f50 0,transparent 25%),
+        var(--bg);
+    color:var(--text);
+    min-height:100vh;
+}
+
+header{
+    border-bottom:1px solid var(--line);
+    background:#080b12dd;
+    backdrop-filter:blur(14px);
+    position:sticky;
+    top:0;
+    z-index:50;
+}
+
+.nav{
+    max-width:1050px;
+    margin:auto;
+    padding:18px 22px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+}
+
+.logo{
+    font-size:22px;
+    font-weight:900;
+    letter-spacing:1px;
+}
+
+.logo span{
+    color:#38bdf8;
+}
+
+.badge{
+    font-size:12px;
+    font-weight:800;
+    color:#93c5fd;
+    background:#17243a;
+    border:1px solid #294a72;
+    padding:7px 11px;
+    border-radius:99px;
+}
+
+.container{
+    max-width:900px;
+    margin:38px auto;
+    padding:0 20px 60px;
+}
+
+.hero{
+    text-align:center;
+    padding:38px 25px;
+    margin-bottom:20px;
+    background:linear-gradient(145deg,#111c2d,#0c131f);
+    border:1px solid var(--line);
+    border-radius:22px;
+    box-shadow:0 25px 70px #0008;
+}
+
+.hero .icon{
+    width:68px;
+    height:68px;
+    margin:0 auto 16px;
+    border-radius:18px;
+    display:grid;
+    place-items:center;
+    font-size:32px;
+    background:linear-gradient(135deg,#2563eb,#06b6d4);
+    box-shadow:0 12px 35px #2563eb44;
+}
+
+.hero h1{
+    font-size:36px;
+    margin-bottom:8px;
+}
+
+.hero h1 span{
+    color:#38bdf8;
+}
+
+.hero p{
+    color:var(--muted);
+    line-height:1.8;
+    font-size:15px;
+}
+
+.notice{
+    margin-top:18px;
+    padding:13px 16px;
+    text-align:right;
+    background:#0b1523;
+    border:1px solid #22334a;
+    border-radius:12px;
+    color:#a9b8ca;
+    font-size:13px;
+}
+
+.info{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:12px;
+    margin-bottom:18px;
+}
+
+.info-box{
+    background:var(--card);
+    border:1px solid var(--line);
+    border-radius:13px;
+    padding:15px;
+    text-align:center;
+}
+
+.info-box strong{
+    display:block;
+    font-size:18px;
+    margin-bottom:4px;
+    color:#dbeafe;
+}
+
+.info-box small{
+    color:var(--muted);
+}
+
+.progress-card{
+    background:var(--card);
+    border:1px solid var(--line);
+    border-radius:14px;
+    padding:15px 17px;
+    margin-bottom:18px;
+}
+
+.progress-top{
+    display:flex;
+    justify-content:space-between;
+    font-size:13px;
+    color:#cbd5e1;
+    margin-bottom:9px;
+}
+
+.progress{
+    height:8px;
+    background:#1e293b;
+    border-radius:99px;
+    overflow:hidden;
+}
+
+.progress-bar{
+    height:100%;
+    width:0%;
+    background:linear-gradient(90deg,var(--blue),var(--blue2));
+    transition:.3s;
+}
+
+.question{
+    background:linear-gradient(145deg,#101722,#0d141f);
+    border:1px solid var(--line);
+    border-radius:17px;
+    padding:22px;
+    margin-bottom:15px;
+    transition:.2s;
+}
+
+.question:hover{
+    border-color:#344a67;
+}
+
+.q-number{
+    display:inline-block;
+    background:#172a45;
+    color:#60a5fa;
+    border:1px solid #294a72;
+    border-radius:7px;
+    padding:5px 9px;
+    font-size:11px;
+    font-weight:900;
+    margin-bottom:11px;
+}
+
+.question h2{
+    font-size:17px;
+    line-height:1.7;
+    margin-bottom:15px;
+}
+
+.points{
+    color:#64748b;
+    font-size:11px;
+    font-weight:600;
+    margin-right:6px;
+}
+
+.option{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    padding:13px 14px;
+    margin:8px 0;
+    border:1px solid #273548;
+    border-radius:10px;
+    cursor:pointer;
+    background:#0c141f;
+    transition:.18s;
+}
+
+.option:hover{
+    background:#111e2e;
+    border-color:#3b82f6;
+}
+
+.option.selected{
+    background:#102746;
+    border-color:#3b82f6;
+    box-shadow:0 0 0 1px #3b82f622;
+}
+
+.option input{
+    width:17px;
+    height:17px;
+    accent-color:#3b82f6;
+    flex:none;
+}
+
+.option span{
+    line-height:1.6;
+    font-size:14px;
+}
+
+.actions{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:12px;
+    background:var(--card);
+    border:1px solid var(--line);
+    padding:18px;
+    border-radius:16px;
+    margin-top:20px;
+}
+
+button{
+    border:0;
+    border-radius:10px;
+    padding:12px 20px;
+    font-size:14px;
+    font-weight:800;
+    cursor:pointer;
+}
+
+.reset{
+    background:#1b2533;
+    color:#cbd5e1;
+}
+
+.submit{
+    color:white;
+    background:linear-gradient(135deg,#2563eb,#0891b2);
+}
+
+.submit:hover{
+    filter:brightness(1.12);
+}
+
+.result{
+    display:none;
+    text-align:center;
+    background:linear-gradient(145deg,#101b2b,#0d141f);
+    border:1px solid #294a72;
+    border-radius:20px;
+    padding:32px;
+    margin-top:20px;
+}
+
+.result h2{
+    font-size:24px;
+}
+
+.score{
+    font-size:52px;
+    font-weight:900;
+    color:#60a5fa;
+    margin:8px 0;
+}
+
+.result p{
+    color:var(--muted);
+    margin-bottom:18px;
+}
+
+footer{
+    text-align:center;
+    padding:25px;
+    color:#64748b;
+    border-top:1px solid var(--line);
+    font-size:12px;
+}
+
+@media(max-width:650px){
+
+    .info{
+        grid-template-columns:1fr;
+    }
+
+    .hero h1{
+        font-size:29px;
+    }
+
+    .actions{
+        flex-direction:column;
+    }
+
+    .actions button{
+        width:100%;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+<div class="nav">
+
+    <div class="logo">
+        MIAMI <span>RP</span>
+    </div>
+
+    <div class="badge">
+        BLACK MARKET • TEST
+    </div>
+
+</div>
+</header>
+
+<main class="container">
+
+<section class="hero">
+
+    <div class="icon">
+        🛡️
+    </div>
+
+    <h1>
+        اختبار <span>MIAMI RP</span>
+    </h1>
+
+    <p>
+        اختبار قوانين البلاك ماركت
+    </p>
+
+    <div class="notice">
+        عند إرسال هذا النموذج، لن يتم جمع اسمك أو بريدك الإلكتروني تلقائياً إلا إذا قمت بإدخاله بنفسك.
+    </div>
+
+</section>
+
+<div class="info">
+
+    <div class="info-box">
+        <strong>15</strong>
+        <small>سؤال</small>
+    </div>
+
+    <div class="info-box">
+        <strong>30</strong>
+        <small>نقطة</small>
+    </div>
+
+    <div class="info-box">
+        <strong>اختيار</strong>
+        <small>متعدد</small>
+    </div>
+
+</div>
+
+<div class="progress-card">
+
+    <div class="progress-top">
+        <span>تقدم الاختبار</span>
+        <span id="progressText">0 / 15</span>
+    </div>
+
+    <div class="progress">
+        <div class="progress-bar" id="progressBar"></div>
+    </div>
+
+</div>
+
+<form id="testForm">
+
+<!-- السؤال 1 -->
+
+<div class="question">
+
+<span class="q-number">السؤال 01</span>
+
+<h2>
+إذا سجلت دخولك إلى موجّه العصابة، كيف يجب أن يكون تصرفك؟
+<span class="points">(2 Points)</span>
+</h2>
+
+<label class="option">
+<input type="radio" name="q1" value="A">
+<span>الكلام في الراديو حتى لو ما عندك شيء مهم</span>
+</label>
+
+<label class="option">
+<input type="radio" name="q1" value="B">
+<span>التسبب في فوضى ومقاطعة الآخرين</span>
+</label>
+
+<label class="option">
+<input type="radio" name="q1" value="C">
+<span>الالتزام بالقوانين واحترام الجميع داخل الموجّه، وعدم إحداث أي إزعاج ,التحدث في الراديو كل 5 ثوانٍ</span>
+</label>
+
+</div>
+
+<!-- السؤال 2 -->
+
+<div class="question">
+
+<span class="q-number">السؤال 02</span>
+
+<h2>
+في حال كنت في سيناريو ماهو التصرف الصحيح
+<span class="points">(2 Points)</span>
+</h2>
+
+<label class="option">
+<input type="radio" name="q2" value="A">
+<span>التكلم مع صديقك في السيناريو و اسبب ازعاج</span>
+</label>
+
+<label class="option">
+<input type="radio" name="q2" value="B">
+<span>الالتزام بالسيناريو وعدم التخريب</span>
+</label>
+
+<label class="option">
+<input type="radio" name="q2" value="C">
+<span>الخروج من السيناريو</span>
+</label>
+
+</div>
+
+<!-- السؤال 3 -->
+
+<div class="question">
+
+<span class="q-number">السؤال 03</span>
+
+<h2>
+إذا أردت خطف عسكريين، كم يجب أن يكون عدد أفراد العصابة؟
+<span class="points">(2 Points)</span>
+</h2>
+
+<label class="option">
+<input type="radio" name="q3" value="A">
+<span>نفس العدد</span>
+</label>
+
+<label class="option">
+<input type="radio" name="q3" value="B">
+<span>ضعف عدد العسكريين</span>
+</label>
+
+<label class="option">
+<input type="radio" name="q3" value="C">
+<span>أقل من العدد</span>
+</label>
+
+<label class="option">
+<input type="radio" name="q3" value="D">
+<span>واحد فقط</span>
+</label>
+
+</div>
+
+<!-- السؤال 4 -->
+
+<div class="question">
+
+<span class="q-number">السؤال 04</span>
+
+<h2>
+ماهو التصرف الصحيح عندما يتم سحبك من قبل مسؤول العصابة للمشاركة في سيناريو؟
+<span class="points">(2 Points)</span>
+</h2>
+
+<label class="option">
+<input type="radio" name="q4" value="A">
+<span>الالتزام بتوجيهات مسؤول العصابة والمشاركة في السيناريو</span>
+</label>
+
+<label class="option">
+<input type="radio" name="q4" value="B">
+<span>تجاهل المسؤول والخروج من السيناريو</span>
+</label>
+
+<label class="option">
+<input type="radio" name="q4" value="C">
+<span>تخريب السيناريو عمداً</span>
+</label>
+
+</div>
+
+<!-- السؤال 5 -->
+
+<div class="question">
+
+<span class="q-number">السؤال 05</span>
+
+<h2>
+هل يسمح بتنفيذ الخطف والقتل لأي عضو
+<span class="points">(2 Points)</span>
+</h2>
+
+<label class="option">
+<input type="radio" name="q5" value="A">
+<span>نعم</span>
+</label>
+
+<label class="option">
+<input type="radio" name="q5" value="B">
+<span>مسموح فقط للأعضاء المعتمدة</span>
+</label>
+
+<label class="option">
+<input type="radio" name="q5" value="C">
+<span>لا</span>
+</label>
+
+</div>
+
+<!-- السؤال 6 -->
+
+<div class="question">
+
+<span class="q-number">السؤال 06</span>
+
+<h2>
+هل يسمح لك باستخدام خواص الاداره
+<span class="points">(2 Points)</span>
+</h2>
+
+<label class="option">
+<input type="radio" name="q6" value="A">
+<span>نعم</span>
+</label>
+
+<label class="option">
+<input type="radio" name="q6" value="B">
+<span>لا</span>
+</label>
+
+<label class="option">
+<input type="radio" name="q6" value="C">
+<span>فقط اذا كنت من اعلى 3 رتب</span>
+</label>
+
+</div>
+
+<!-- السؤال 7 -->
+
+<div class="question">
+
+<span class="q-number">السؤال 07</span>
+
+<h2>
+اين يتم ارسال السرقات والإنجازات
+<span class="points">(2 Points)</span>
+</h2>
+
+<label class="option">
+<input type="radio" name="q7" value="A">
+<span>شات البلاك ماركت</span>
+</label>
+
+<label class="option">
+<input type="radio" name="q7" value="B">
+<span>انجازات البلاك ماركت</span>
+</label>
+
+</div>
+
+<!-- السؤال 8 -->
+
+<div class="question">
+
+<span class="q-number">السؤال 08</span>
+
+<h2>
+هل يحق لك خطف المواطن بالأمنة ؟
+<span class="points">(2 Points)</span>
+</h2>
+
+<label class="option">
+<input type="radio" name="q8" value="A">
+<span>نعم</span>
+</label>
+
+<label class="option">
+<input type="radio" name="q8" value="B">
+<span>لا</span>
+</label>
+
+</div>
+
+<!-- السؤال 9 -->
+
+<div class="question">
+
+<span class="q-number">السؤال 09</span>
+
+<h2>
+على ماذا تعتمد ترقيات البلاك ماركت
+<span class="points">(2 Points)</span>
+</h2>
+
+<label class="option">
+<input type="radio" name="q9" value="A">
+<span>التواجد</span>
+</label>
+
+<label class="option">
+<input type="radio" name="q9" value="B">
+<span>التفاعل</span>
+</label>
+
+<label class="option">
+<input type="radio" name="q9" value="C">
+<span>الانجازات</span>
+</label>
+
+<label class="option">
+<input type="radio" name="q9" value="D">
+<span>جميع ما سبق</span>
+</label>
+
+</div>
+
+<!-- السؤال 10 -->
+
+<div class="question">
+
+<span class="q-number">السؤال 10</span>
+
+<h2>
+كيف تتصرف لو شفت عضو يخالف القوانين
+<span class="points">(2 Points)</span>
+</h2>
+
+<label class="option">
+<input type="radio" name="q10" value="A">
+<span>ابلغ المسؤول مباشرة</span>
+</label>
+
+<label class="option">
+<input type="radio" name="q10" value="B">
+<span>امنعه من التصرف</span>
+</label>
+
+<label class="option">
+<input type="radio" name="q10" value="C">
+<span>ابتعد عنه</span>
+</label>
+
+</div>
+
+<!-- السؤال 11 -->
+
+<div class="question">
+
+<span class="q-number">السؤال 11</span>
+
+<h2>
+التهديد بالمحاسبة سواء كسر او فصل من قبل الاعضاء العصابة يؤديهم الى
+<span class="points">(2 Points)</span>
+</h2>
+
+<label class="option">
+<input type="radio" name="q11" value="A">
+<span>التحذير</span>
+</label>
+
+<label class="option">
+<input type="radio" name="q11" value="B">
+<span>الكسر</span>
+</label>
+
+<label class="option">
+<input type="radio" name="q11" value="C">
+<span>الفصل</span>
+</label>
+
+</div>
+
+<!-- السؤال 12 -->
+
+<div class="question">
+
+<span class="q-number">السؤال 12</span>
+
+<h2>
+في حال رفض اوامر المسؤول ذلك يؤدي الى
+<span class="points">(2 Points)</span>
+</h2>
+
+<label class="option">
+<input type="radio" name="q12" value="A">
+<span>تحذير أول</span>
+</label>
+
+<label class="option">
+<input type="radio" name="q12" value="B">
+<span>تحذير أول و ثاني</span>
+</label>
+
+<label class="option">
+<input type="radio" name="q12" value="C">
+<span>كسر</span>
+</label>
+
+</div>
+
+<!-- السؤال 13 -->
+
+<div class="question">
+
+<span class="q-number">السؤال 13</span>
+
+<h2>
+إذا فشل التفاوض مع العساكر، ما هو التصرف الصحيح
+<span class="points">(2 Points)</span>
+</h2>
+
+<label class="option">
+<input type="radio" name="q13" value="A">
+<span>بدء هجوم عشوائي بدون تنظيم</span>
+</label>
+
+<label class="option">
+<input type="radio" name="q13" value="B">
+<span>انتظار المسؤول حتى ينزل عدًّا تنازليًا</span>
+</label>
+
+<label class="option">
+<input type="radio" name="q13" value="C">
+<span>تجاهل الموقف والخروج من السيناريو</span>
+</label>
+
+</div>
+
+<!-- السؤال 14 -->
+
+<div class="question">
+
+<span class="q-number">السؤال 14</span>
+
+<h2>
+التفاخر بالرتبة يؤدي الي
+<span class="points">(2 Points)</span>
+</h2>
+
+<label class="option">
+<input type="radio" name="q14" value="A">
+<span>الفصل</span>
+</label>
+
+<label class="option">
+<input type="radio" name="q14" value="B">
+<span>تحذير</span>
+</label>
+
+<label class="option">
+<input type="radio" name="q14" value="C">
+<span>كسر</span>
+</label>
+
+</div>
+
+<!-- السؤال 15 -->
+
+<div class="question">
+
+<span class="q-number">السؤال 15</span>
+
+<h2>
+عند تسجيل دخولك هل يجب عليك التواجد بالروم الدسكورد و الراديو اللعبة
+<span class="points">(2 Points)</span>
+</h2>
+
+<label class="option">
+<input type="radio" name="q15" value="A">
+<span>فقط الراديو</span>
+</label>
+
+<label class="option">
+<input type="radio" name="q15" value="B">
+<span>فقط روم الدسكورد</span>
+</label>
+
+<label class="option">
+<input type="radio" name="q15" value="C">
+<span>جميع ما سبق</span>
+</label>
+
+</div>
+
+
+<div class="actions">
+
+<button
+    type="button"
+    class="reset"
+    onclick="resetTest()">
+    ↻ إعادة الاختبار
+</button>
+
+<button
+    type="submit"
+    class="submit">
+    إرسال الاختبار ✓
+</button>
+
+</div>
+
+</form>
+
+
+<section class="result" id="result">
+
+<h2>
+تم إنهاء الاختبار!
+</h2>
+
+<div
+    class="score"
+    id="score">
+    0 / 30
+</div>
+
+<p id="resultText"></p>
+
+<button
+    class="submit"
+    onclick="resetTest()">
+    إعادة الاختبار
+</button>
+
+</section>
+
+</main>
+
+
+<footer>
+MIAMI RP • BLACK MARKET • TEST FORM
+</footer>
+
+
+<script>
+
+const answers = {
+
+    q1:"C",
+    q2:"B",
+    q3:"B",
+    q4:"A",
+    q5:"B",
+
+    q6:"C",
+
+    q7:"B",
+    q8:"B",
+    q9:"D",
+    q10:"A",
+
+    q11:"A",
+
+    q12:"A",
+
+    q13:"B",
+
+    q14:"C",
+
+    q15:"C"
+
+};
+
+
+const names = Object.keys(answers);
+
+
+function updateProgress(){
+
+    let done = 0;
+
+    names.forEach(q => {
+
+        if(
+            document.querySelector(
+                'input[name="'+q+'"]:checked'
+            )
+        ){
+
+            done++;
+
+        }
+
+    });
+
+
+    document.getElementById(
+        "progressText"
+    ).textContent = done + " / 15";
+
+
+    document.getElementById(
+        "progressBar"
+    ).style.width =
+        (done / 15 * 100) + "%";
+
+}
+
+
+document.querySelectorAll(".option").forEach(option => {
+
+    option.addEventListener("click", () => {
+
+        const input =
+            option.querySelector("input");
+
+
+        document.querySelectorAll(
+            'input[name="'+input.name+'"]'
+        ).forEach(r => {
+
+            r.closest(".option")
+             .classList.remove("selected");
+
+        });
+
+
+        input.checked = true;
+
+        option.classList.add("selected");
+
+        updateProgress();
+
+    });
+
+});
+
+
+document.getElementById(
+    "testForm"
+).addEventListener("submit", e => {
+
+    e.preventDefault();
+
+
+    let score = 0;
+
+    let answered = 0;
+
+
+    names.forEach(q => {
+
+        const selected =
+            document.querySelector(
+                'input[name="'+q+'"]:checked'
+            );
+
+
+        if(selected){
+
+            answered++;
+
+
+            if(
+                selected.value === answers[q]
+            ){
+
+                score += 2;
+
+            }
+
+        }
+
+    });
+
+
+    if(answered < 15){
+
+        alert(
+            "يرجى الإجابة على جميع الأسئلة قبل إرسال الاختبار."
+        );
+
+        return;
+
+    }
+
+
+    document.getElementById(
+        "score"
+    ).textContent = score + " / 30";
+
+
+    document.getElementById(
+        "resultText"
+    ).textContent =
+        "حصلت على " + score + " من 30 نقطة.";
+
+
+    document.getElementById(
+        "result"
+    ).style.display = "block";
+
+
+    document.getElementById(
+        "result"
+    ).scrollIntoView({
+        behavior:"smooth"
+    });
+
+});
+
+
+function resetTest(){
+
+    document.getElementById(
+        "testForm"
+    ).reset();
+
+
+    document.querySelectorAll(
+        ".option"
+    ).forEach(o => {
+
+        o.classList.remove("selected");
+
+    });
+
+
+    document.getElementById(
+        "result"
+    ).style.display = "none";
+
+
+    updateProgress();
+
+
+    window.scrollTo({
+        top:0,
+        behavior:"smooth"
+    });
+
+}
+
+
+updateProgress();
+
+</script>
+
+</body>
+</html>
